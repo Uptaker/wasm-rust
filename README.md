@@ -73,7 +73,8 @@ Kasulikud käsud:
 **hello_world** kaustas on tekkinud paar faili:
 - `Cargo.toml` - konfiguratsioonifail Cargo tööriistale. See on võrreldav NodeJS-põhiste projektide `package.json`-iga.
 - `Cargo.lock` - automaatselt koostatud fail pärast kompileerimist. Haldab sõltuvuste versioone ning ei ole mõeldud kasutajapoolsete muutusteks.
-- `/src/` - lähtekoodi failid
+- `/src` - lähtekoodi failid
+- `/target` - kompileeritud failid
 
 *Kui kasutusel on git versioonihalduseks, siis soovituslik on panna `**/target` **.gitignore** faili.*
 
