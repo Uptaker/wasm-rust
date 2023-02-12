@@ -81,7 +81,124 @@ Kasulikud käsud:
 Loe rohkem:
 - https://rustup.rs/
 
-# TODO Paidalga WebAssembly
+# Paigaldame WebAssembly teegid
+
+Rusti WebAssembly funktsioone saab mitmet moodi käsitleda. Kõige klassikaline töövoog on tekitada uue Rust moodulteeki (library).
+
+
+Enne seda, peame installima [wasm-pack](https://rustwasm.github.io/wasm-pack/installer/) tööriista.
+
+```bash
+curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
+```
+
+`wasm-pack` aitab teil luua Rustiga loodud WebAssembly raamistikke. Sellega tuleb kaasa ka `wasm-bindgen` sõtluvus, mis aitab meil nii importida Rusti kompileeritud koodi brauserisse kui ka eksportida JavaScript funktsioone.
+
+
+Järgmisena, tekima uue Rust moodulteeki kasutades `--lib` parameetri:
+```bash
+cargo init --name add_example --lib && cd test
+```
+
+
+Lisame `wasm-bindgen` sõltuvuse meie `Cargo.toml` faili ning ütleme kompilaatorile, et tekitame dünaamilise süsteemi teeki/mooduli kasutades `cdylib`:
+```toml
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+wasm-bindgen = "0.2.84" # Versiooni saab siit: https://crates.io/crates/wasm-bindgen
+```
+
+Meie `lib.rs` failis kasutame juba olemasoleva koodinäidet, kuid me lisame sinna `wasm_bindgen` makrot, et genereeritud funktsiooni oleks võimalik importida.
+
+```rust
+use wasm_bindgen::prelude::*;
+
+#[wasm_bindgen]
+pub fn add(left: usize, right: usize) -> usize {
+    left + right
+}
+```
+
+Seejärel terminalis kasutame `wasm-pack` tööriista, et kompileerida veebiraamistikuna:
+```bash
+wasm-pack build --target web
+```
+
+Nüüdseks peab tekkima ma uus `pkg` kaust. JavaScript ja TypeScript arendajatele tulevad ette tuttavad failid, nagu `package.json` ja TypeScript definitsiooni failid arenduseks. Lisaks tekib ka meie `.wasm` laiendiga kompileeritud binaarne fail, mida saab käivitada brauseris.
+
+Laadime WASM mooduli JavaScriptist. Selleks tekimate uue `index.html` faili järgneva sisuga:
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WASM-Rust</title>
+</head>
+<body>
+    <script type="module">
+        import init, {add} from './pkg/add_example.js'
+
+        await init()
+
+        console.log(add(5, 10))
+    </script>
+</body>
+</html>
+```
+
+Serveerime `index.html` läbi HTTP serveri. Selleks sobib ükskõik mis server. Lihtsuse pärast saab kasutada ka Python http serveri (Python3 olemasolul):
+
+```bash
+python3 -m http.server
+
+# serveerib localhost:8000
+```
+
+Kui avad serveeritud HTML faili, siis konsooliaknas peab olema '15' väljund.
+
+**Seega kõik toimub!**
+
+# Arendus läbi WebPacki
+
+WebPack võimaldab meil saada mugavama arenduskeskkonna läbi asju nagu kiire ümberlaadimise (hot refresh) ja arendusserveri läbi.
+
+Selleks peab olema paigaldatud `node`, mille läbi tuleb `npm` pakettihaldus (package manager)
+
+Genereerime uue Rust WebAssembly näidisprojekti läbi WebPacki:
+```bash
+cd webpack && npm init rust-webpack webpack
+```
+
+Paneme käima arenduserveri:
+```bash
+npm start
+```
+
+Avades brauseri konsooli peaksid nägema sõnumi: "Hello world!".
+
+**See tähendab, et kõik toimis!** - uued projektid saab koostada samal viisil.
+
+---
+*Mis teha, kui tuleb `digital envelope routines::unsupported` viga?*
+
+Vea lahenduseks on kaks võimalust:
+
+1. Installida vanem Node 16 versioon
+
+või
+
+2. Lisada järgmine kood `webpack.config.js` faili algusesse:
+```js
+const crypto = require("crypto");
+const crypto_orig_createHash = crypto.createHash;
+crypto.createHash = algorithm => crypto_orig_createHash(algorithm == "md4" ? "sha256" : algorithm);
+```
+
+[(src)](https://rustwasm.github.io/wasm-pack/book/tutorials/hybrid-applications-with-webpack/using-your-library.html)
 
 
 

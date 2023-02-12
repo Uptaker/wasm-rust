@@ -1,2 +1,11 @@
 **/target/
+**/dist/
+**/node_modules/
 /hello_world
+/test2
+
+
+# Added by cargo
+
+/target
+/Cargo.lock
