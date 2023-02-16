@@ -1,6 +1,7 @@
 **/target/
 **/dist/
 **/node_modules/
+**/pkg/
 /hello_world
 /test2
 

@@ -1,8 +1,87 @@
 # Rust ja WebAssembly
 
-# TODO Mis on Rust?
+# Mis on Rust?
 
-# TODO Miks Rust koos WebAssemblyga?
+Rust on noor programmeerimiskeel - alles tulnud välja viimase kümnendi jooksul. Aastast 2022 juba seitsmendat aastat järjest StackOverflow küsimustiku järgi arendajate kõige armastatuim keel [(src)](https://survey.stackoverflow.co/2022/), Rust on järjest kogunud populaarsust oma elu jooksul.
+
+Rust on üldiselt süsteemiprogrammeerimiskeel - ta on kiire, ohutu mäluhaldusega ning kuna ta on uus, teda ei aeglusta viimase sajandi eel tehtud programmeerimiskeele disaini vead.
+
+### Võimas kompilaator
+
+Rustis täidab kompilaator koodi "valvaja" rolli. Ta tuvastab ära levinuid ja raskesti tabavaid vigu ja keeldub kompileerimast, kui ta neid leidub. Selline lähenemine annab garantii, et mäluga seotud probleemid ja vead on võimatu Rust keeles.
+
+Nii saab arendaja keskenduda süsteemi loogikale ja panustada kiire arendusele ning arendaja suure tõenäosusega ei pea tagantjärgi parandama vigu.
+
+### Lihtne sõltuvuste haldus
+
+Rustiga tuleb kaasa **Cargo** sõltuvuste haldur, mis laseb arendajatel lihtsasti kasutada teiste arendajate Rust liideseid või jagada enda koostatud liides.
+[(src)](https://rustwiki.org/en/book/ch00-00-introduction.html)
+
+### Testideks valmis
+
+Rust keelega tuleb kaasa nende enda testimisraamistik. Lihtsad näited tulevad kaasa ka siis, kui tekitada läbi Cargo uue projekti. Nii saavad arendajad lihtsasti sättida ülesse testimise oma integratsioonide töövoogu, hoida koodikvaliteedi kõrgel tasemel ning kindlustada koodi töötavust juhul, kui tekivad suured koodibaasi muudatused.
+
+### Suurettevõtete toetus
+
+Rust keel sai oma vaikse alguse läbi Mozilla arendajatelt. Nüüdseks ajaks Rust keele haldab **Rust Foundation** organisatsioon, mille asutajaliikmeteks on suurettevõtted nagu Google, Microsoft, Huawei, AWS ja Mozilla. [(src)](https://foundation.rust-lang.org/news/2021-02-08-hello-world/)
+
+# Miks Rust koos WebAssemblyga?
+
+Kui vaadata, kuidas WebAssemblyga arendatakse, siis juba mitmendat aastat järjest kõige tihemini arendatakse WebAssembly rakendusi läbi Rusti [(src)](https://blog.scottlogic.com/2022/06/20/state-of-wasm-2022.html).
+
+Mitmed WebAssembly-sisesed tööriistad, nagu WASI (WebAssembly System Interface) on juba kirjutatud Rust keeles. 
+
+## Rust WebAssembly eelised
+
+Eelnevalt mainitud eelised on tegelikult olemas ka teistes keeltes. Rustil on hetkel mitu eelist konkureerivate keetlega.
+
+### .wasm failid on väiksed
+
+Süsteemi programmeerimiskeeled nagu C, C++ ja Rust ei tule koos enda käivituskeskkonnaga (runtime environment). See tähendab, et võrreldes keeltega nagu Java või C#, siis pakitud **.wasm** fail ei ole nii suur.
+
+### Töötab koos levinud veebitehnoloogia tööriistadega
+
+JavaScript maailmas on populaarseks tööriistaks osutunud WebPack, mis pakib TypeScripti/JavaScripti rakenduse kokku. Rust keelega on lihtne integreerida nende tööriistadega, mis kiirendab ja hõlpsustab arendust. [(src)](https://rustwasm.github.io/book/why-rust-and-webassembly.html)
+
+## Kasutusvõimalused
+
+Rust WebAssembly saab kasutada mitmet moodi. Kasutusvõimalusi saab liigitada kaheks liigiks - terve rakendus on kas osaliselt või täiesti kirjutatud Rustiga. [(src)](https://developer.mozilla.org/en-US/docs/WebAssembly/Rust_to_wasm). Repositoorium ja õpetus keskendub osalise Rust WebAssembly rakenduse ehitamiseks.
+
+### Osaliselt Rustiga
+
+Veebirakenduse ehitamine osaliselt Rustiga tähendab seda, et mingi spetsiifiline osa rakendusest koosneb Rust funktsioonidest. Selline lähenemine on kasulik olemasolevatele veebirakendustele, kus leidub jõudlusega seotud puudusi. Integreerimine sel juhul ei oleks raske, kuid siiski peab ümberkirjutama funktsionaalsust võõras keeles.
+
+Selle tagajärjena on loomulikult see, et rakenduse arendamine, testimine ja üldine töövoog on tehtud keerulisemaks. Õnneks nagu eelmainitud, on Rust võrreldes teiste keeltega lihtsasti integreerud olemasoleva veebitehnoloogia rööriistadega.
+
+### Täieikult Rustiga
+
+On tulnud välja mitu veebiraamistiku Rustile, kus terve kood on kirjutatud täiuslikus ulatuses Rustis. **Yew** on kõige populaarsem Rusti veebiraamistik, kuid on tulnud välja ka teisi, nagu **Leptos**,**Zaplib** ja teised.
+
+Kõik väljatoodud veebiraamistikud põhinevad reaktiivsele paradigmale, mis leidub teistes populaarsetes veebiraamistikes nagu React, Vue ja Svelte - seega. Siin on näide Yew rakenduse komponendist:
+
+```rust
+#[function_component(App)]
+fn app() -> Html {
+    // ...
+-    let videos = videos.iter().map(|video| html! {
+-        <p key={video.id}>{format!("{}: {}", video.speaker, video.title)}</p>
+-    }).collect::<Html>();
+-
+    html! {
+        <>
+            <h1>{ "RustConf Explorer" }</h1>
+            <div>
+                <h3>{"Videos to watch"}</h3>
+-               { videos }
++               <VideosList videos={videos} />
+            </div>
+            // ...
+        </>
+    }
+}
+```
+
+Nende eelis on ilmselgelt see, et kõik on kirjutatud ühe keelega - kuid selle taga on palju negatiivseid tagajärgi. Reaalsuses on hetkel täielike Rust rakendusi raskem kirjutada. Lisaks, DOM manipulatsiooni tõttu ja toores veebiraamistikudena nad ei ole tootmisvalmis (production-ready) reaalseks maailmaks, kuna tavalised JavaScript rakendused osutuvad olla kiiremad nii tavakasutaja jaoks kui ka arenduses.
 
 # Rust paigaldamine
 
@@ -199,6 +278,8 @@ crypto.createHash = algorithm => crypto_orig_createHash(algorithm == "md4" ? "sh
 ```
 
 [(src)](https://rustwasm.github.io/wasm-pack/book/tutorials/hybrid-applications-with-webpack/using-your-library.html)
+
+Mõlemad näited on saadaval õpetuse repositooriumis.
 
 
 
