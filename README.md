@@ -394,6 +394,43 @@ error('Some error! Oh no!')
 
 Nüüd, kui avame veebilehe, siis konsooli väljundisse tekib number 15 ning saame hüppakna, et midagi on läinud valesti.
 
+# Lihtne jõudlustest
+
+Bubblesort - 100,000 numbrit, numbrid 0 kuni 10000
+
+Algoritmed on mõlemil samad, kuid Rust koodis on asjad keerulisemad - peab konverteerima Rust massiivi JavaScript massiiviks. Lisaks toimub algne serialiseerimine. Serialiseerimine läbi erinevaid tüüpe on kahjuks üks WebAssembly nõrkustest, kuid siiski, JavaScript on brauserites päris hästi optimeeritud.
+
+## Firefox
+Keel    Rust        Js
+1.      10390       10403
+2.      10588       10755
+3.      10511       10629
+4.      10411       10276
+5.      10550       10413
+6.      10055       10282
+7.      10930       10719
+8.      10507       10239
+9.      10518       10752
+10.     10543       10351
+Kesk.   10500.3     10481.9
+
+## Chrome
+Keel    Rust        Js
+1.      21604       21754
+2.      21923       21830
+3.      21620       21434
+4.      21935       21746
+5.      22219       21812
+6.      22100       21643
+7.      22147       22291
+8.      21841       21444
+9.      21662       21654
+10.     22280       21866
+Kesk.   21933.1     21747.4
+
+*mõõdetud millisekundites*
+
+
 # Loe rohkem
 - https://rustwasm.github.io/docs/wasm-bindgen/introduction.html
 

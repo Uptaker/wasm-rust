@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WASM-Rust</title>
+</head>
+<body>
+    <script type="module">
+        import init, {bubble_sort} from './pkg/bubblesort.js'
+        import {unsorted} from './arr.js'
+        await init()
+
+        function jsBubbleSort(origArr) {
+            let arr = origArr
+            for(let i = 0; i < arr.length; i++){
+                for(let j = 0; j < ( arr.length - i -1 ); j++) {
+                    if(arr[j] > arr[j+1]){
+                        let temp = arr[j]
+                        arr[j] = arr[j + 1]
+                        arr[j+1] = temp
+                    }
+                }
+            }
+            return arr;
+        }
+
+        console.log("Sorting in Rust...")
+        let startTime = performance.now()
+        const sortedRust = bubble_sort(unsorted)
+        console.log(`Rust sorting ended in ${performance.now() - startTime}`)
+
+        console.log("Sorting in JavaScript...")
+        startTime = performance.now()
+        const sortedJs = bubble_sort(unsorted)
+        console.log(`JavaScript sorting ended in ${performance.now() - startTime}`)
+
+        console.log(sortedRust)
+        console.log(sortedJs)
+        console.log(unsorted)
+    </script>
+</body>
+</html>
