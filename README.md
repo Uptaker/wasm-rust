@@ -41,7 +41,7 @@ Eelnevalt mainitud tüübisüsteemi eelis on tegelikult olemas ka teistes keelte
 
 Süsteemi programmeerimiskeeled nagu C, C++ ja Rust ei tule koos enda käivituskeskkonnaga (runtime environment). See tähendab, et võrreldes keeltega nagu Java või C#, siis pakitud **.wasm** fail ei ole nii suur.
 
-Näitena võib tuua Go keele WebAssembly toetust. Kõige väiksem võimalik Go rakenduse `.wasm` fail on hetkel 2MB, kuid lihtne Rust "Hello World" näidisrakendus, mis on genereeritud läbi WebPacki ning on optimeerimata, on ainult 117kB. Teised on aga saavutanud kuni 13kB suuruse faili [(src)](https://dev.to/sahilgarg/why-rust-is-good-for-web-assembly-and-path-to-learning-it-2njf).
+Näitena võib tuua Go keele WebAssembly toetust. Kõige väiksem võimalik Go rakenduse `.wasm` fail on hetkel 2MB [(src)](https://github.com/golang/go/wiki/WebAssembly#reducing-the-size-of-wasm-files), kuid lihtne Rust "Hello World" näidisrakendus, mis on genereeritud läbi WebPacki ning on optimeerimata, on ainult 117kB. Teised on aga saavutanud kuni 13kB suuruse faili [(src)](https://dev.to/sahilgarg/why-rust-is-good-for-web-assembly-and-path-to-learning-it-2njf).
 
 ### Töötab koos levinud veebitehnoloogia tööriistadega
 
