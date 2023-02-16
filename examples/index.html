@@ -8,11 +8,13 @@
 </head>
 <body>
     <script type="module">
-        import init, {add} from './pkg/add_example.js'
+        import init, {add, error} from './pkg/add_example.js'
 
         await init()
 
         console.log(add(5, 10))
+
+        error('Some error! Oh no!')
     </script>
 </body>
 </html>

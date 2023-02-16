@@ -245,7 +245,7 @@ Kui avad serveeritud HTML faili, siis konsooliaknas peab olema '15' väljund.
 
 **Seega kõik toimub!**
 
-# Arendus läbi WebPacki
+# Arendus läbi bundleri - WebPack
 
 WebPack võimaldab meil saada mugavama arenduskeskkonna läbi asju nagu kiire ümberlaadimise (hot refresh) ja arendusserveri läbi.
 
@@ -253,7 +253,7 @@ Selleks peab olema paigaldatud `node`, mille läbi tuleb `npm` pakettihaldus (pa
 
 Genereerime uue Rust WebAssembly näidisprojekti läbi WebPacki:
 ```bash
-cd webpack && npm init rust-webpack webpack
+npm init rust-webpack webpack && cd webpack
 ```
 
 Paneme käima arenduserveri:
@@ -287,16 +287,115 @@ crypto.createHash = algorithm => crypto_orig_createHash(algorithm == "md4" ? "sh
 
 Mõlemad näited on saadaval õpetuse repositooriumis.
 
-# TODO Rust funktsioonide väljakutsumine
+# Funktsioonide importimine/eksportimine
 
-What these do and how to import functions:
+## Rustis
+
+Vaatame järgmist näidisfaili, `main.rs`:
+
 ```rust
 use wasm_bindgen::prelude::*;
 
 #[wasm_bindgen]
+pub fn add(left: usize, right: usize) -> usize {
+    left + right
+}
 
-import * as wasm from "blah"
+#[wasm_bindgen]
+extern {
+    pub fn alert(s: &str);
+}
+
+#[wasm_bindgen]
+pub fn error(err: &str) {
+    alert(&format!("Error: please try reloading the page,\n {}", err));
+}
 ```
+
+Algusest pihta on kohe imporditud kõik `wasm_bindgen` funktsioonid. `wasm_bindgen` on üks kõige olulisematest atribuutidest, mis on kasutuses kõikides funktsioonides, mida tahame kas importida või eksportida.
+
+```rust
+use wasm_bindgen::prelude::*;
+```
+
+Järgmisena, me eksportime lihtsa `add()` funktsiooni.
+
+Enne funktsiooni defineerimist anname talle `#[wasm_bindgen]` atribuuti, kuid see pole veel kõik - peame tegema funktsiooni avatud kõikidele. Selleks kasutame `pub` märksõna funktsiooni sees. See on sarnane `public` funktsioonidega näiteks Java või C# keeles.
+
+```rust
+#[wasm_bindgen]
+pub fn add(left: usize, right: usize) -> usize {
+    left + right
+}
+```
+
+Järgmine `alert()` funktsioon teeb vastupidist - me importime funktsiooni JavaScriptist. Selleks teeme teda `extern` funktsiooniks, mis tähistab, et tegemist on välise funktsiooniga (external). Lisaks, peame kopeerima ka tema originaalsed sisendparameetrid.
+
+```rust
+#[wasm_bindgen]
+extern {
+    pub fn alert(s: &str);
+}
+```
+
+Nüüd saame kutsuda sellesama `alert()` funktsiooni meie Rust koodis. Lisaks, eksportime selle välja, et JavaScript saaks selle kasutada:
+
+```rust
+#[wasm_bindgen]
+pub fn error(err: &str) {
+    alert(&format!("Error: please try reloading the page,\n {}", err));
+}
+```
+
+Kui arendus käib ilma bundlerita, siis on vaja kompileerida:
+```bash
+wasm-pack build --target web
+```
+
+## JavaScript kood
+
+Vaatame nüüd JavaScript koodi:
+
+```html
+<script type="module">
+    import init, {add, error} from './pkg/example.js'
+
+    await init()
+
+    console.log(add(5, 10))
+
+    error('Some error! Oh no!')
+</script>
+```
+
+WebAssembly funktsioonide väljakutsumiseks peame kasutama JavaScript moodulid, seejärel importime neid funktsioone nimepidi:
+
+```js
+import init, {add, error} from './pkg/example.js'
+```
+
+`init` on vaja välja kutsuda juba rakenduse alguses - see teeb valmis meie koostatud mooduli kasutamiseks.
+
+```js
+await init()
+```
+
+Kuna meil on defineeritud ka `add()` ja `alert()` funktsioonid, siis importisime neid ja võtame kasutusele.
+
+```js
+console.log(add(5, 10))
+
+error('Some error! Oh no!')
+```
+
+Nüüd, kui avame veebilehe, siis konsooli väljundisse tekib number 15 ning saame hüppakna, et midagi on läinud valesti.
+
+
+
+
+
+
+
 
 
 
