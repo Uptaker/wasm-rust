@@ -164,7 +164,11 @@ Kasulikud käsud:
 Loe rohkem:
 - https://rustup.rs/
 
-# Paigaldame WebAssembly teegid
+# WebAssembly arendus
+
+Järgnevalt tutvume erinevate Rust WebAssembly arendusvõimalustega. On olemas kaks peamist liiki - klassikaline arendus läbi `wasm-pack` tööriista või läbi bundleri, mis tekitab meile arenduseks optimaalse töövoogu.
+
+## 1. Klassikaline arendus - wasm-pack
 
 Rusti WebAssembly funktsioone saab mitmet moodi käsitleda. Kõige klassikaline töövoog on tekitada uue Rust moodulteeki (library).
 
@@ -245,7 +249,7 @@ Kui avad serveeritud HTML faili, siis konsooliaknas peab olema '15' väljund.
 
 **Seega kõik toimub!**
 
-# Arendus läbi bundleri - WebPack
+## 2. Arendus läbi bundleri - WebPack
 
 WebPack võimaldab meil saada mugavama arenduskeskkonna läbi asju nagu kiire ümberlaadimise (hot refresh) ja arendusserveri läbi.
 
