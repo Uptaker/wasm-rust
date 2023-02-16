@@ -283,7 +283,11 @@ crypto.createHash = algorithm => crypto_orig_createHash(algorithm == "md4" ? "sh
 
 [(src)](https://rustwasm.github.io/wasm-pack/book/tutorials/hybrid-applications-with-webpack/using-your-library.html)
 
+---
+
 Mõlemad näited on saadaval õpetuse repositooriumis.
+
+# TODO Rust funktsioonide väljakutsumine
 
 
 
