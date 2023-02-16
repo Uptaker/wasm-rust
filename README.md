@@ -394,6 +394,9 @@ error('Some error! Oh no!')
 
 Nüüd, kui avame veebilehe, siis konsooli väljundisse tekib number 15 ning saame hüppakna, et midagi on läinud valesti.
 
+# Loe rohkem
+- https://rustwasm.github.io/docs/wasm-bindgen/introduction.html
+
 
 
 
