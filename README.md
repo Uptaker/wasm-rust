@@ -293,7 +293,7 @@ Mõlemad näited on saadaval õpetuse repositooriumis.
 
 # Funktsioonide importimine/eksportimine
 
-## Rustis
+## Rust koodis
 
 Vaatame järgmist näidisfaili, `main.rs`:
 
@@ -356,7 +356,7 @@ Kui arendus käib ilma bundlerita, siis on vaja kompileerida:
 wasm-pack build --target web
 ```
 
-## JavaScript kood
+## JavaScript koodis
 
 Vaatame nüüd JavaScript koodi:
 
