@@ -384,7 +384,7 @@ import init, {add, error} from './pkg/example.js'
 await init()
 ```
 
-Kuna meil on defineeritud ka `add()` ja `alert()` funktsioonid, siis importisime neid ja võtame kasutusele.
+Kuna meil on defineeritud ka `add()` ja `alert()` funktsioonid, siis importime neid ja võtame kasutusele.
 
 ```js
 console.log(add(5, 10))
