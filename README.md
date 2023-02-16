@@ -289,6 +289,15 @@ Mõlemad näited on saadaval õpetuse repositooriumis.
 
 # TODO Rust funktsioonide väljakutsumine
 
+What these do and how to import functions:
+```rust
+use wasm_bindgen::prelude::*;
+
+#[wasm_bindgen]
+
+import * as wasm from "blah"
+```
+
 
 
 
