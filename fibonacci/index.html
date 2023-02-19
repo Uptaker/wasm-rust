@@ -26,16 +26,13 @@
 
         console.log("Fibonacci in Rust...")
         let startTime = performance.now()
-        const sortedRust = fibonacci(1000000n)
+        fibonacci(1000000n)
         console.log(`Rust ended in ${performance.now() - startTime} ms`)
 
         console.log("Fibonacci in JavaScript...")
         startTime = performance.now()
-        const sortedJs = fibonacciJs(1000000n)
+        fibonacciJs(1000000n)
         console.log(`JavaScript ended in ${performance.now() - startTime} ms`)
-
-        console.log(BigInt.asUintN(64, sortedRust))
-        console.log(BigInt.asUintN(64, sortedJs))
     </script>
 </body>
 </html>
