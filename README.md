@@ -446,6 +446,7 @@ Keel    Rust        Js
 3.      2         50446
 4.      4         51536
 5.      2.8       50984
+Kesk.   2.56      50856.2
 
 # Loe rohkem
 - https://rustwasm.github.io/docs/wasm-bindgen/introduction.html
