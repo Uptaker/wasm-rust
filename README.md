@@ -396,39 +396,56 @@ Nüüd, kui avame veebilehe, siis konsooli väljundisse tekib number 15 ning saa
 
 # Lihtne jõudlustest
 
+## Bubblesort
 Bubblesort - 100,000 numbrit, numbrid 0 kuni 10000
 
 Algoritmed on mõlemil samad, kuid Rust koodis on asjad keerulisemad - peab konverteerima Rust massiivi JavaScript massiiviks. Lisaks toimub algne serialiseerimine. Serialiseerimine läbi erinevaid tüüpe on kahjuks üks WebAssembly nõrkustest, kuid siiski, JavaScript on brauserites päris hästi optimeeritud.
 
-## Firefox
+### Firefox
 Keel    Rust        Js
-1.      10390       10403
-2.      10588       10755
-3.      10511       10629
-4.      10411       10276
-5.      10550       10413
-6.      10055       10282
-7.      10930       10719
-8.      10507       10239
-9.      10518       10752
-10.     10543       10351
-Kesk.   10500.3     10481.9
+1.      9098        17659
+2.      10284       20006
+3.      9772        19996
+4.      9930        19768
+5.      10434       19834
+Kesk.   9903.6      19452.6
 
-## Chrome
+### Chrome
 Keel    Rust        Js
-1.      21604       21754
-2.      21923       21830
-3.      21620       21434
-4.      21935       21746
-5.      22219       21812
-6.      22100       21643
-7.      22147       22291
-8.      21841       21444
-9.      21662       21654
-10.     22280       21866
-Kesk.   21933.1     21747.4
+1.      22298       10602
+2.      23338       11001
+3.      23854       11370
+4.      23220       10669
+5.      23162       10843
+Kesk.   23174.4     10897
 
 *mõõdetud millisekundites*
+
+## Fibonacci numbrid
+
+Hea võrdlusalgoritm jõudluse võrdlemiseks peaks olema protsessoriga seotud ja hõlmama intensiivseid arvutusi. See võimaldab  kahe keele jõudlust võrrelda ilma muude segavate teguriteta, nagu sisend/väljund (I/O) või võrgu latentsus (latency).
+
+Sellise algoritmi üheks näiteks on Fibonacci jadageneraator. Fibonacci jadageneraator hõlmab intensiivseid arvutusi, mistõttu on see hea kandidaat jõudluse võrdluseks.
+
+Algoritmi sisendnumbriks on miljon.
+
+### Chrome
+Keel    Rust        Js
+1.      3.9         5594
+2.      3           5223
+3.      2           5213
+4.      2.8         5044
+5.      2.6         5283
+Kesk.   2.86        5271.4
+
+
+### Firefox
+Keel    Rust        Js
+1.      3         50136
+2.      1         51179
+3.      2         50446
+4.      4         51536
+5.      2.8       50984
 
 
 # Loe rohkem

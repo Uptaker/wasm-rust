@@ -33,12 +33,11 @@
 
         console.log("Sorting in JavaScript...")
         startTime = performance.now()
-        const sortedJs = bubble_sort(unsorted)
+        const sortedJs = jsBubbleSort(unsorted)
         console.log(`JavaScript sorting ended in ${performance.now() - startTime}`)
 
         console.log(sortedRust)
         console.log(sortedJs)
-        console.log(unsorted)
     </script>
 </body>
 </html>

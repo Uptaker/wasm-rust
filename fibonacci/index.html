@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WASM-Rust</title>
+</head>
+<body>
+    <script type="module">
+        import init, {fibonacci} from './pkg/fibonacci.js'
+        await init()
+
+        function fibonacciJs(n) {
+            if (n === 0) return 0
+            else if (n === 1) return 1
+            let a = 0n
+            let b = 1n
+            for (let i = 2; i <= n; i++) {
+                const c = a + b
+                a = b
+                b = c
+            }
+            return b
+        }
+
+        console.log("Fibonacci in Rust...")
+        let startTime = performance.now()
+        const sortedRust = fibonacci(1000000n)
+        console.log(`Rust ended in ${performance.now() - startTime} ms`)
+
+        console.log("Fibonacci in JavaScript...")
+        startTime = performance.now()
+        const sortedJs = fibonacciJs(1000000n)
+        console.log(`JavaScript ended in ${performance.now() - startTime} ms`)
+
+        console.log(BigInt.asUintN(64, sortedRust))
+        console.log(BigInt.asUintN(64, sortedJs))
+    </script>
+</body>
+</html>
