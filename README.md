@@ -402,22 +402,24 @@ Bubblesort - 100,000 numbrit, numbrid 0 kuni 10000
 Algoritmed on mõlemil samad, kuid Rust koodis on asjad keerulisemad - peab konverteerima Rust massiivi JavaScript massiiviks. Lisaks toimub algne serialiseerimine. Serialiseerimine läbi erinevaid tüüpe on kahjuks üks WebAssembly nõrkustest, kuid siiski, JavaScript on brauserites päris hästi optimeeritud.
 
 ### Firefox
-Keel    Rust        Js
-1.      9098        17659
-2.      10284       20006
-3.      9772        19996
-4.      9930        19768
-5.      10434       19834
-Kesk.   9903.6      19452.6
+|Keel  |  Rust   |     Js|
+|--------|-------|------|
+|1.    |  9098   |     17659|
+|2.    |  10284  |     20006|
+|3.    |  9772   |     19996|
+|4.    |  9930   |     19768|
+|5.    |  10434  |     19834|
+|Kesk. |  9903.6 |     19452.6|
 
 ### Chrome
-Keel    Rust        Js
-1.      22298       10602
-2.      23338       11001
-3.      23854       11370
-4.      23220       10669
-5.      23162       10843
-Kesk.   23174.4     10897
+|Keel |   Rust    |    Js|
+|--------|-------|------|
+|1.   |   22298   |    10602|
+|2.   |   23338   |    11001|
+|3.   |   23854   |    11370|
+|4.   |   23220   |    10669|
+|5.   |   23162   |    10843|
+|Kesk.|   23174.4 |    10897|
 
 *mõõdetud millisekundites*
 
@@ -430,23 +432,25 @@ Sellise algoritmi üheks näiteks on Fibonacci jadageneraator. Fibonacci jadagen
 Algoritmi sisendnumbriks on miljon.
 
 ### Chrome
-Keel    Rust        Js
-1.      3.9         5594
-2.      3           5223
-3.      2           5213
-4.      2.8         5044
-5.      2.6         5283
-Kesk.   2.86        5271.4
+|Keel    |Rust   |     Js|     
+|--------|-------|------|
+|1.      |3.9         |5594  |     
+|2.      |3           |5223  |     
+|3.      |2           |5213  |     
+|4.      |2.8         |5044  |     
+|5.      |2.6         |5283  |     
+|Kesk.   |2.86        |5271.4|     
 
 
 ### Firefox
-Keel    Rust        Js
-1.      3         50136
-2.      1         51179
-3.      2         50446
-4.      4         51536
-5.      2.8       50984
-Kesk.   2.56      50856.2
+|Keel   | Rust  |      Js|
+|--------|-------|------|
+|1.    |  3    |     50136|
+|2.    |  1    |     51179|
+|3.    |  2    |     50446|
+|4.    |  4    |     51536|
+|5.    |  2.8  |     50984|
+|Kesk. |  2.56 |     50856.2|
 
 # Loe rohkem
 - https://rustwasm.github.io/docs/wasm-bindgen/introduction.html
