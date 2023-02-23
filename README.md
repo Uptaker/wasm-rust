@@ -421,6 +421,16 @@ Algoritmed on mõlemil samad, kuid Rust koodis on asjad keerulisemad - peab konv
 |5.   |   23162   |    10843|
 |Kesk.|   23174.4 |    10897|
 
+### Edge
+|Keel |   Rust    |    Js|
+|--------|-------|------|
+|1.   |   21834   |    10779|
+|2.   |   21539   |    10586|
+|3.   |   22164   |    10736|
+|4.   |   22302   |    10784|
+|5.   |   22011   |    10843|
+|Kesk.|   21970   |    10745.6|
+
 *mõõdetud millisekundites*
 
 ## Fibonacci numbrid
