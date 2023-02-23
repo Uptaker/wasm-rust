@@ -452,6 +452,16 @@ Algoritmi sisendnumbriks on miljon.
 |5.    |  2.8  |     50984|
 |Kesk. |  2.56 |     50856.2|
 
+### Edge
+|Keel   | Rust  |      Js|
+|--------|-------|------|
+|1.    |  2.7    |     5385|
+|2.    |  3.7    |     5471|
+|3.    |  2.8    |     5276|
+|4.    |  2.5    |     5391|
+|5.    |  2.4  |     5255|
+|Kesk. |  2.82 |     5355.6|
+
 # Loe rohkem
 - https://rustwasm.github.io/docs/wasm-bindgen/introduction.html
 
