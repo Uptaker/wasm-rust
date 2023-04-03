@@ -2,7 +2,7 @@
 
 # Mis on Rust?
 
-Rust on noor programmeerimiskeel - alles tulnud välja viimase kümnendi jooksul. Aastast 2022 juba seitsmendat aastat järjest StackOverflow küsimustiku järgi arendajate kõige armastatuim keel [(src)](https://survey.stackoverflow.co/2022/), Rust on järjest kogunud populaarsust oma elu jooksul.
+Rust on noor programmeerimiskeel - alles tulnud välja viimase kümnendi jooksul. Aastast 2022 juba seitsmendat aastat järjest StackOverflow küsimustiku järgi arendajate kõige armastatuim keel [[1]](https://survey.stackoverflow.co/2022/), Rust on järjest kogunud populaarsust oma elu jooksul.
 
 Rust on üldiselt süsteemiprogrammeerimiskeel - ta on kiire, ohutu mäluhaldusega ning kuna ta on uus, teda ei aeglusta viimase sajandi eel tehtud programmeerimiskeele disaini vead.
 
@@ -15,7 +15,7 @@ Nii saab arendaja keskenduda süsteemi loogikale ja panustada kiire arendusele n
 ### Lihtne sõltuvuste haldus
 
 Rustiga tuleb kaasa **Cargo** sõltuvuste haldur, mis laseb arendajatel lihtsasti kasutada teiste arendajate Rust liideseid või jagada enda koostatud liides.
-[(src)](https://rustwiki.org/en/book/ch00-00-introduction.html)
+[[2]](https://rustwiki.org/en/book/ch00-00-introduction.html)
 
 ### Testideks valmis
 
@@ -23,13 +23,13 @@ Rust keelega tuleb kaasa nende enda testimisraamistik. Lihtsad näited tulevad k
 
 ### Suurettevõtete toetus
 
-Rust keel sai oma vaikse alguse läbi Mozilla arendajatelt. Nüüdseks ajaks Rust keele haldab **Rust Foundation** organisatsioon, mille asutajaliikmeteks on suurettevõtted nagu Google, Microsoft, Huawei, AWS ja Mozilla. [(src)](https://foundation.rust-lang.org/news/2021-02-08-hello-world/)
+Rust keel sai oma vaikse alguse läbi Mozilla arendajatelt. Nüüdseks ajaks Rust keele haldab **Rust Foundation** organisatsioon, mille asutajaliikmeteks on suurettevõtted nagu Google, Microsoft, Huawei, AWS ja Mozilla. [[3]](https://foundation.rust-lang.org/news/2021-02-08-hello-world/)
 
 # Miks Rust koos WebAssemblyga?
 
-Kui vaadata, kuidas WebAssemblyga arendatakse, siis juba mitmendat aastat järjest kõige tihemini arendatakse WebAssembly rakendusi läbi Rusti [(src)](https://blog.scottlogic.com/2022/06/20/state-of-wasm-2022.html).
+Kui vaadata, kuidas WebAssemblyga arendatakse, siis juba mitmendat aastat järjest kõige tihemini arendatakse WebAssembly rakendusi läbi Rusti [[4]](https://blog.scottlogic.com/2022/06/20/state-of-wasm-2022.html).
 
-Mitmed WebAssembly-sisesed tööriistad, nagu WASI (WebAssembly System Interface) on juba kirjutatud Rust keeles [(src)](https://github.com/WebAssembly/WASI). See tähendab, et Rust ei ole võõras WebAssembly maailmas ning naudib head esmaklassilist tuge.
+Mitmed WebAssembly-sisesed tööriistad, nagu WASI (WebAssembly System Interface) on juba kirjutatud Rust keeles [[5]](https://github.com/WebAssembly/WASI). See tähendab, et Rust ei ole võõras WebAssembly maailmas ning naudib head esmaklassilist tuge.
 
 Võrreldes JavaScriptiga, Rusti tüübisüsteem on palju tugevam ja naudib turvalisema arendustsükli oma tüübi süsteemi tõttu.
 
@@ -41,15 +41,15 @@ Eelnevalt mainitud tüübisüsteemi eelis on tegelikult olemas ka teistes keelte
 
 Süsteemi programmeerimiskeeled nagu C, C++ ja Rust ei tule koos enda käivituskeskkonnaga (runtime environment). See tähendab, et võrreldes keeltega nagu Java või C#, siis pakitud **.wasm** fail ei ole nii suur.
 
-Näitena võib tuua Go keele WebAssembly toetust. Kõige väiksem võimalik Go rakenduse `.wasm` fail on hetkel 2MB [(src)](https://github.com/golang/go/wiki/WebAssembly#reducing-the-size-of-wasm-files), kuid lihtne Rust "Hello World" näidisrakendus, mis on genereeritud läbi WebPacki ning on optimeerimata, on ainult 117kB. Teised on aga saavutanud kuni 13kB suuruse faili [(src)](https://dev.to/sahilgarg/why-rust-is-good-for-web-assembly-and-path-to-learning-it-2njf).
+Näitena võib tuua Go keele WebAssembly toetust. Kõige väiksem võimalik Go rakenduse `.wasm` fail on hetkel 2MB [[6]](https://github.com/golang/go/wiki/WebAssembly#reducing-the-size-of-wasm-files), kuid lihtne Rust "Hello World" näidisrakendus, mis on genereeritud läbi WebPacki ning on optimeerimata, on ainult 117kB. Teised on aga saavutanud kuni 13kB suuruse faili [[7]](https://dev.to/sahilgarg/why-rust-is-good-for-web-assembly-and-path-to-learning-it-2njf).
 
 ### Töötab koos levinud veebitehnoloogia tööriistadega
 
-JavaScript maailmas on populaarseks tööriistaks osutunud WebPack, mis pakib TypeScripti/JavaScripti rakenduse kokku. Rust keelega on lihtne integreerida nende tööriistadega, mis kiirendab ja hõlpsustab arendust. [(src)](https://rustwasm.github.io/book/why-rust-and-webassembly.html)
+JavaScript maailmas on populaarseks tööriistaks osutunud WebPack, mis pakib TypeScripti/JavaScripti rakenduse kokku. Rust keelega on lihtne integreerida nende tööriistadega, mis kiirendab ja hõlpsustab arendust. [[8]](https://rustwasm.github.io/book/why-rust-and-webassembly.html)
 
 ## Kasutusvõimalused
 
-Rust WebAssembly saab kasutada mitmet moodi. Kasutusvõimalusi saab liigitada kaheks liigiks - terve rakendus on kas osaliselt või täiesti kirjutatud Rustiga. [(src)](https://developer.mozilla.org/en-US/docs/WebAssembly/Rust_to_wasm). Repositoorium ja õpetus keskendub osalise Rust WebAssembly rakenduse ehitamiseks.
+Rust WebAssembly saab kasutada mitmet moodi. Kasutusvõimalusi saab liigitada kaheks liigiks - terve rakendus on kas osaliselt või täiesti kirjutatud Rustiga. [[9]](https://developer.mozilla.org/en-US/docs/WebAssembly/Rust_to_wasm). Repositoorium ja õpetus keskendub osalise Rust WebAssembly rakenduse ehitamiseks.
 
 ### Osaliselt Rustiga
 
@@ -64,6 +64,8 @@ On tulnud välja mitu veebiraamistiku Rustile, kus terve kood on kirjutatud täi
 Kõik väljatoodud veebiraamistikud põhinevad reaktiivsele paradigmale, mis leidub teistes populaarsetes veebiraamistikes nagu React, Vue ja Svelte - seega. Siin on näide Yew rakenduse komponendist:
 
 ```rust
+// Allikas - https://yew.rs/docs/0.19.0/tutorial
+
 #[function_component(App)]
 fn app() -> Html {
     // ...
@@ -89,7 +91,7 @@ Nende eelis on ilmselgelt see, et kõik on kirjutatud ühe keelega - kuid selle 
 
 # Rust paigaldamine
 
-Rust installeerimiseks kasutame `rustup`. See on Rust paigaldamiseks ametlikult soovitatud viis. [(src)](https://www.rust-lang.org/learn/get-started)
+Rust installeerimiseks kasutame `rustup`. See on Rust paigaldamiseks ametlikult soovitatud viis. [[10]](https://www.rust-lang.org/learn/get-started)
 
 
 ### 1. Paigalda Rust
@@ -278,14 +280,12 @@ Vea lahenduseks on kaks võimalust:
 
 või
 
-2. Lisada järgmine kood `webpack.config.js` faili algusesse:
+2. Lisada järgmine kood `webpack.config.js` faili algusesse [[11]](https://stackoverflow.com/questions/69394632/webpack-build-failing-with-err-ossl-evp-unsupported):
 ```js
-const crypto = require("crypto");
-const crypto_orig_createHash = crypto.createHash;
-crypto.createHash = algorithm => crypto_orig_createHash(algorithm == "md4" ? "sha256" : algorithm);
+const crypto = require("crypto")
+const crypto_orig_createHash = crypto.createHash
+crypto.createHash = algorithm => crypto_orig_createHash(algorithm == "md4" ? "sha256" : algorithm)
 ```
-
-[(src)](https://rustwasm.github.io/wasm-pack/book/tutorials/hybrid-applications-with-webpack/using-your-library.html)
 
 ---
 
@@ -393,3 +393,22 @@ error('Some error! Oh no!')
 ```
 
 Nüüd, kui avame veebilehe, siis konsooli väljundisse tekib number 15 ning saame hüppakna, et midagi on läinud valesti.
+
+## Loe rohkem
+
+Materjal loodud järgnevast allika põhjast:
+
+- https://rustwasm.github.io/wasm-pack/book/tutorials/hybrid-applications-with-webpack/using-your-library.html
+
+# Allikad
+1. https://survey.stackoverflow.co/2022/
+2. https://rustwiki.org/en/book/ch00-00-introduction.html
+3. https://foundation.rust-lang.org/news/2021-02-08-hello-world/
+4. https://blog.scottlogic.com/2022/06/20/state-of-wasm-2022.html
+5. https://blog.scottlogic.com/2022/06/20/state-of-wasm-2022.html
+6. https://github.com/golang/go/wiki/WebAssembly#reducing-the-size-of-wasm-files
+7. https://dev.to/sahilgarg/why-rust-is-good-for-web-assembly-and-path-to-learning-it-2njf
+8. https://rustwasm.github.io/book/why-rust-and-webassembly.html
+9. https://developer.mozilla.org/en-US/docs/WebAssembly/Rust_to_wasm
+10. https://www.rust-lang.org/learn/get-started
+11. https://stackoverflow.com/questions/69394632/webpack-build-failing-with-err-ossl-evp-unsupported
