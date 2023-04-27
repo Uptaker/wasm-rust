@@ -24,22 +24,21 @@
             return b
         }
 
-        console.log("Fibonacci in Rust...")
-        let startTime = performance.now()
-        fibonacci(1000000n)
-        let time = performance.now() - startTime
-        console.log(`Rust ended in ${time} ms`)
-        rust.innerText = time
+        function startFibonacci(n) {
+            console.log("Fibonacci in Rust...")
+            let startTime = performance.now()
+            fibonacci(n)
+            let time = performance.now() - startTime
+            console.log(`Rust ended in ${time} ms`)
+            rust.innerText += `\n\nFibonacci ${n} -> ${time}`
+        }
 
-        console.log("Fibonacci in JavaScript...")
-        startTime = performance.now()
-        fibonacciJs(1000000n)
-        time = performance.now() - startTime
-        console.log(`JavaScript ended in ${performance.now() - startTime} ms`)
-        js.innerText = time
+        startFibonacci(10n)
+        startFibonacci(80n)
+        startFibonacci(1000n)
+        startFibonacci(1000000n)
     </script>
 
-    <div>JavaScript: <span id="js"></span></div>
     <div>Rust: <span id="rust"></span></div>
 </body>
 </html>
