@@ -22,7 +22,8 @@ pub fn fibonacci(n: u64) -> u64 {
 /*
     After many attempts and failures, 
     I've started to look elsewhere due to my insufficient knowledge of Rust.
-    This implementation worked splendidly with the last input, which is a copy of this:
+    
+    This implementation by Roy Adams worked splendidly with the last input:
     https://github.com/rgadams/wasm-primes/blob/main/src/lib.rs
 */
 
