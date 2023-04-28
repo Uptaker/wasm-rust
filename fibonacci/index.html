@@ -8,8 +8,22 @@
 </head>
 <body>
     <script type="module">
-        import init, {fibonacci} from './pkg/fibonacci.js'
-        await init()
+        import {init, sieveOfEratosthenes, fibonacci} from './pkg/fibonacci.js'
+
+        async function run() {
+            await init()
+
+            startFibonacci(10n)
+            startFibonacci(80n)
+            startFibonacci(1000n)
+            startFibonacci(1000000n)
+
+            startSoE(10000)
+            startSoE(1000000)
+            // startSoE(100000000n)
+            // startSoE(1000000000n)
+            startSoE(10000000000)
+        }
 
         function fibonacciJs(n) {
             if (n === 0) return 0
@@ -25,18 +39,26 @@
         }
 
         function startFibonacci(n) {
-            console.log("Fibonacci in Rust...")
+            let name = 'Fibonacci'
+            console.log(name + " in Rust...")
             let startTime = performance.now()
             fibonacci(n)
             let time = performance.now() - startTime
             console.log(`Rust ended in ${time} ms`)
-            rust.innerText += `\n\nFibonacci ${n} -> ${time}`
+            rust.innerText += `\n\n${name} ${n} -> ${time}`
         }
 
-        startFibonacci(10n)
-        startFibonacci(80n)
-        startFibonacci(1000n)
-        startFibonacci(1000000n)
+        function startSoE(n) {
+            let name = 'SoE'
+            console.log(name + " in Rust...")
+            let startTime = performance.now()
+            sieveOfEratosthenes(n)
+            let time = performance.now() - startTime
+            console.log(`Rust ended in ${time} ms`)
+            rust.innerText += `\n\n${name} - ${n} -> ${time}`
+        }
+
+        run()
     </script>
 
     <div>Rust: <span id="rust"></span></div>
