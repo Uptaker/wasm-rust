@@ -10,9 +10,8 @@ crate-type = ["cdylib"]
 
 [dependencies]
 wasm-bindgen = "0.2.84" # https://crates.io/crates/wasm-bindgen
-js-sys = "0.3.45"
-bit-vec = "0.6.3"
-num = "0.4.0"
+rand = "0.8.5"
+getrandom = { version = "0.2", features = ["js"] }
 
 [dependencies.web-sys]
 version = "0.3.4"
